@@ -1,4 +1,4 @@
-package com.example.lastfmapp.ui;
+package com.example.lastfmapp.ui.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lastfmapp.R;
-import com.example.lastfmapp.ui.view.ArtistsActivity;
+import com.example.lastfmapp.databinding.SplashScreenBinding;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,11 +16,14 @@ import java.util.TimerTask;
 @SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
 
+    private SplashScreenBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.splash_screen);
+        binding = SplashScreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         TimerTask timerTask = new TimerTask() {
             @Override

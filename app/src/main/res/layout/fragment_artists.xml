@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.view.ArtistsFragment">
+
+    <TextView
+        android:id="@+id/title_first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/title_artist_first"
+        android:textSize="28sp"/>
+
+    <TextView
+        android:id="@+id/title_second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/title_artist_second"
+        android:textSize="42sp"
+        android:textStyle=""/>
+
+    <TextView
+        android:id="@+id/message_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/text_info"
+        android:textSize="16sp"
+        android:textStyle=""/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_artists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"/>
+
+</LinearLayout>

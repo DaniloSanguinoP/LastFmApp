@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">LastFmApp</string>
+    <string name="artist_name">Nombre del artista</string>
+    <string name="artist_number">#</string>
+    <string name="artist_listeners">Oyentes: </string>
+    <string name="artist_listeners_number">0000000 </string>
+    <string name="title_artist_first">Top Artistas</string>
+    <string name="title_artist_second">Colombia</string>
+    <string name="text_info">Seleccione un artista para más información</string>
 </resources>
