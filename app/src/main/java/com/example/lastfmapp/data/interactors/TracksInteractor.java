@@ -24,6 +24,7 @@ public class TracksInteractor {
     public TracksInteractor() {
     }
 
+    /**Obtiene la lista de las canciones del servio.*/
     public MutableLiveData<List<Tracks>> getTopTracks(String artistName) {
 
         MutableLiveData<List<Tracks>> tracksData = new MutableLiveData<>();

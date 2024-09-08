@@ -7,7 +7,7 @@ import android.net.NetworkCapabilities;
 
 public class NetworkUtils {
 
-    // Método para verificar si hay conexión a Internet
+    /**Verifica si hay conexión a Internet*/
     public static boolean isInternetAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 

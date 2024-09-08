@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 public class FormatUtil {
 
+    /**Fortea una cadena de string a decimal*/
     public static String FormatNumber(String number) {
         try {
             double numberDouble = Double.parseDouble(number);

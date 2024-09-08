@@ -25,7 +25,7 @@ public class ArtistsInteractor {
     public ArtistsInteractor() {
     }
 
-    /**Obtener artistas*/
+    /**Obtiene la lista de los artistas del servio.*/
     public MutableLiveData<List<Artists>> getTopArtists() {
 
         MutableLiveData<List<Artists>> artistsData = new MutableLiveData<>();

@@ -77,6 +77,7 @@ public class TrackFragment extends Fragment implements OnTrackClickListener {
         });
     }
 
+    /** Redireccionamiento al website*/
     public void goToWebsite(String url) {
         if (url.isEmpty()) {
             Snackbar.make(binding.getRoot(), getString(R.string.error_exist_url), Snackbar.LENGTH_LONG)
@@ -85,10 +86,7 @@ public class TrackFragment extends Fragment implements OnTrackClickListener {
             if (NetworkUtils.isInternetAvailable(requireActivity())) {
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-
-                if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivity(intent);
-                }
+                startActivity(intent);
             } else {
                 Snackbar.make(binding.getRoot(), getString(R.string.error_internet), Snackbar.LENGTH_LONG)
                         .show();

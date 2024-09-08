@@ -4,8 +4,6 @@ public class Artists {
 
     private String name;
     private String listeners;
-    private String mbid;
-    private String url;
 
     // Getters y Setters
 
@@ -23,22 +21,6 @@ public class Artists {
 
     public void setListeners(String listeners) {
         this.listeners = listeners;
-    }
-
-    public String getMbid() {
-        return mbid;
-    }
-
-    public void setMbid(String mbid) {
-        this.mbid = mbid;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
 }

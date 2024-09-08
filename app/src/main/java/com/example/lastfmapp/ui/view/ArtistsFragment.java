@@ -72,6 +72,7 @@ public class ArtistsFragment extends Fragment implements OnArtistClickListener {
         }
     }
 
+    /** Garga el fragment TrackFragment*/
     public void changeFragment(String artists) {
         TrackFragment trackFragment = TrackFragment.newInstance(artists);
         ((ArtistsActivity) getActivity()).changeFragment(trackFragment);

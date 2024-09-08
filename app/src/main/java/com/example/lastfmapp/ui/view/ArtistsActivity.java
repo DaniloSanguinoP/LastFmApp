@@ -27,7 +27,8 @@ public class ArtistsActivity extends AppCompatActivity {
         }
 
     }
-
+    
+    /** Gestiona el lanzamioento de fragment */
     public void changeFragment(Fragment fragment) {
         transaction = getSupportFragmentManager().beginTransaction().replace(R.id.artistsFragment, fragment);
         transaction.addToBackStack(null);
