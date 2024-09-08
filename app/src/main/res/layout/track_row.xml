@@ -8,51 +8,41 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     app:cardCornerRadius="8dp">
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/img_artist"
+            android:id="@+id/iv_listener"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/img_artist"
+            android:src="@drawable/img_cloud_music"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
-            android:id="@+id/artist_number"
-            android:layout_width="wrap_content"
+            android:id="@+id/track_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/artist_number"
+            android:text="@string/track_name"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_margin="10dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_artist"/>
+            app:layout_constraintStart_toEndOf="@+id/iv_listener"
+            app:layout_constraintEnd_toStartOf="@+id/iv_arrow_forward"/>
 
         <TextView
-            android:id="@+id/artist_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/artist_name"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginStart="5dp"
-            app:layout_constraintTop_toTopOf="@+id/artist_number"
-            app:layout_constraintStart_toEndOf="@+id/artist_number"/>
-
-        <TextView
-            android:id="@+id/artist_listeners"
+            android:id="@+id/track_listeners"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/artist_listeners"
+            android:text="@string/track_reproductions"
             android:layout_marginTop="5sp"
-            app:layout_constraintTop_toBottomOf="@+id/artist_number"
-            app:layout_constraintStart_toStartOf="@+id/artist_number"/>
+            app:layout_constraintTop_toBottomOf="@+id/track_name"
+            app:layout_constraintStart_toStartOf="@+id/track_name"/>
 
         <TextView
             android:id="@+id/artist_listeners_number"
@@ -61,8 +51,18 @@
             android:text="@string/artist_listeners_number"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="10sp"
-            app:layout_constraintTop_toTopOf="@+id/artist_listeners"
-            app:layout_constraintStart_toEndOf="@+id/artist_listeners"
+            app:layout_constraintTop_toTopOf="@+id/track_listeners"
+            app:layout_constraintStart_toEndOf="@+id/track_listeners"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_arrow_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/arrow_forward"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
 

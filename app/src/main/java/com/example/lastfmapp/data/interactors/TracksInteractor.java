@@ -1,15 +1,14 @@
 package com.example.lastfmapp.data.interactors;
 
 import static com.example.lastfmapp.constants.AppConstant.API_KEY;
-import static com.example.lastfmapp.constants.AppConstant.LIMIT_ARTISTS;
-import static com.example.lastfmapp.constants.AppConstant.LOCATION;
+import static com.example.lastfmapp.constants.AppConstant.LIMIT_TRACKS;
 
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.lastfmapp.data.model.Artists;
-import com.example.lastfmapp.data.model.TopArtistsResponse;
+import com.example.lastfmapp.data.model.TopTracksResponse;
+import com.example.lastfmapp.data.model.Tracks;
 import com.example.lastfmapp.dataAccess.ApiRequest;
 import com.example.lastfmapp.dataAccess.RetrofitClient;
 
@@ -20,29 +19,27 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class ArtistsInteractor {
+public class TracksInteractor {
 
-    public ArtistsInteractor() {
+    public TracksInteractor() {
     }
 
-    /**Obtener artistas*/
-    public MutableLiveData<List<Artists>> getTopArtists() {
+    public MutableLiveData<List<Tracks>> getTopTracks(String artistName) {
 
-        MutableLiveData<List<Artists>> artistsData = new MutableLiveData<>();
+        MutableLiveData<List<Tracks>> tracksData = new MutableLiveData<>();
 
         try {
-
             Retrofit retrofit = RetrofitClient.getInstance();
 
             ApiRequest apiRequest = retrofit.create(ApiRequest.class);
-            Call<TopArtistsResponse> artistisRequestCall = apiRequest.getArtists(LOCATION, API_KEY, LIMIT_ARTISTS);
+            Call<TopTracksResponse> tracksRequestCall = apiRequest.getTracks(artistName, API_KEY, LIMIT_TRACKS);
 
-            artistisRequestCall.enqueue(new Callback<TopArtistsResponse>() {
+            tracksRequestCall.enqueue(new Callback<TopTracksResponse>() {
                 @Override
-                public void onResponse(Call<TopArtistsResponse> call, Response<TopArtistsResponse> response) {
+                public void onResponse(Call<TopTracksResponse> call, Response<TopTracksResponse> response) {
                     if (response.isSuccessful() && response.body() != null) {
 
-                        artistsData.setValue(response.body().getTopartists().getArtist());
+                        tracksData.setValue(response.body().getTopTracks().getTracks());
 
                     } else {
                         Log.e("ERROR", "onResponse: " + response.errorBody());
@@ -51,7 +48,7 @@ public class ArtistsInteractor {
                 }
 
                 @Override
-                public void onFailure(Call<TopArtistsResponse> call, Throwable t) {
+                public void onFailure(Call<TopTracksResponse> call, Throwable t) {
                     Log.e("ERROR", "onFailure: " + t);
                 }
             });
@@ -59,6 +56,8 @@ public class ArtistsInteractor {
         } catch (Exception e) {
             Log.e("ERROR", "Exception: " + e);
         }
-        return artistsData;
+        return tracksData;
     }
+
 }
+

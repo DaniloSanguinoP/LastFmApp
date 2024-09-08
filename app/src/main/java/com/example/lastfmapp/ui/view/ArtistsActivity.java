@@ -14,7 +14,6 @@ public class ArtistsActivity extends AppCompatActivity {
 
     private ActivityArtistsBinding binding;
     FragmentTransaction transaction;
-    Fragment artistsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +23,14 @@ public class ArtistsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         if (savedInstanceState == null) {
-            artistsFragment = new ArtistsFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.artistsFragment, artistsFragment).commit();
+            changeFragment(new ArtistsFragment());
         }
 
+    }
+
+    public void changeFragment(Fragment fragment) {
+        transaction = getSupportFragmentManager().beginTransaction().replace(R.id.artistsFragment, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

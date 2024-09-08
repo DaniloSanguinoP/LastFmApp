@@ -1,29 +1,50 @@
 package com.example.lastfmapp.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
-public class TopArtistsResponse {
-    private TopArtists topartists;
+public class TopTracksResponse {
 
-    public static class TopArtists {
-        private List<Artists> artist;
+    @SerializedName("toptracks")
+    private TopTracks topTracks;
+
+    public static class TopTracks {
+        @SerializedName("track")
+        private List<Tracks> tracks;
+
+        @SerializedName("@attr")
         private Attr attr;
 
+        public List<Tracks> getTracks() {
+            return tracks;
+        }
+
+        public void setTracks(List<Tracks> tracks) {
+            this.tracks = tracks;
+        }
+
+        public Attr getAttr() {
+            return attr;
+        }
+
+        public void setAttr(Attr attr) {
+            this.attr = attr;
+        }
+
         public static class Attr {
-            private String country;
+            private String artist;
             private String page;
             private String total;
             private String totalPages;
             private String perPage;
 
-            // Getters y Setters
-
-            public String getCountry() {
-                return country;
+            public String getArtist() {
+                return artist;
             }
 
-            public void setCountry(String country) {
-                this.country = country;
+            public void setArtist(String artist) {
+                this.artist = artist;
             }
 
             public String getPage() {
@@ -58,31 +79,14 @@ public class TopArtistsResponse {
                 this.perPage = perPage;
             }
         }
-
-        // Getters y Setters
-        public List<Artists> getArtist() {
-            return artist;
-        }
-
-        public void setArtist(List<Artists> artist) {
-            this.artist = artist;
-        }
-
-        public Attr getAttr() {
-            return attr;
-        }
-
-        public void setAttr(Attr attr) {
-            this.attr = attr;
-        }
     }
 
-    // Getters y Setters
-    public TopArtists getTopartists() {
-        return topartists;
+
+    public TopTracks getTopTracks() {
+        return topTracks;
     }
 
-    public void setTopartists(TopArtists topartists) {
-        this.topartists = topartists;
+    public void setTopTracks(TopTracks topTracks) {
+        this.topTracks = topTracks;
     }
 }

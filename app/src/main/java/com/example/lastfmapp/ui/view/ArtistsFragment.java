@@ -1,30 +1,27 @@
 package com.example.lastfmapp.ui.view;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.lastfmapp.adapter.ArtistsAdapter;
-import com.example.lastfmapp.data.model.Artists;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.lastfmapp.R;
 import com.example.lastfmapp.databinding.FragmentArtistsBinding;
+import com.example.lastfmapp.ui.adapter.ArtistsAdapter;
+import com.example.lastfmapp.ui.adapter.onClickListener.OnArtistClickListener;
+import com.example.lastfmapp.ui.viewModel.ArtistsViewModel;
+import com.example.lastfmapp.utils.NetworkUtils;
+import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-
-public class ArtistsFragment extends Fragment {
+public class ArtistsFragment extends Fragment implements OnArtistClickListener {
 
     private ArtistsViewModel artistsViewModel;
-    private RecyclerView recyclerView;
     private ArtistsAdapter artistsAdapter;
     private FragmentArtistsBinding binding;
 
@@ -46,20 +43,38 @@ public class ArtistsFragment extends Fragment {
         artistsViewModel = new ViewModelProvider(this).get(ArtistsViewModel.class);
         binding.recyclerViewArtists.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        searchArtists();
+        if (NetworkUtils.isInternetAvailable(requireActivity())) {
+            searchArtists();
+        } else {
+            Snackbar.make(binding.getRoot(), getString(R.string.error_internet), Snackbar.LENGTH_LONG)
+                    .show();
+        }
+
     }
 
     private void searchArtists() {
 
-        artistsViewModel.getTopArtists().observe(getViewLifecycleOwner(), new Observer<ArrayList<Artists>>() {
-            @Override
-            public void onChanged(ArrayList<Artists> artists) {
-                if(artists != null) {
-                    artistsAdapter = new ArtistsAdapter(artists);
-                    binding.recyclerViewArtists.setAdapter(artistsAdapter);
-                }
+        artistsViewModel.getTopArtists().observe(getViewLifecycleOwner(), artists -> {
+            if (artists != null) {
+                artistsAdapter = new ArtistsAdapter(artists, ArtistsFragment.this);
+                binding.recyclerViewArtists.setAdapter(artistsAdapter);
             }
         });
+    }
+
+    @Override
+    public void onArtistClick(String artists) {
+        if(NetworkUtils.isInternetAvailable(requireActivity())) {
+            changeFragment(artists);
+        } else {
+            Snackbar.make(binding.getRoot(), getString(R.string.error_internet), Snackbar.LENGTH_LONG)
+                    .show();
+        }
+    }
+
+    public void changeFragment(String artists) {
+        TrackFragment trackFragment = TrackFragment.newInstance(artists);
+        ((ArtistsActivity) getActivity()).changeFragment(trackFragment);
     }
 
     @Override
@@ -67,4 +82,5 @@ public class ArtistsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

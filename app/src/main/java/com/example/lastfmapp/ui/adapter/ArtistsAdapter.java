@@ -1,6 +1,7 @@
-package com.example.lastfmapp.adapter;
+package com.example.lastfmapp.ui.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,15 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastfmapp.data.model.Artists;
 import com.example.lastfmapp.databinding.ArtistsRowBinding;
+import com.example.lastfmapp.ui.adapter.onClickListener.OnArtistClickListener;
+import com.example.lastfmapp.utils.FormatUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsAdapter.ViewHolder> {
 
-    private ArrayList<Artists> dataset;
+    private List<Artists> dataset;
+    private OnArtistClickListener listener;
 
-    public ArtistsAdapter(ArrayList<Artists> artists) {
+    public ArtistsAdapter(List<Artists> artists, OnArtistClickListener listener) {
         this.dataset = artists;
+        this.listener = listener;
     }
 
 
@@ -30,13 +36,14 @@ public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ArtistsAdapter.ViewHolder holder, int position) {
         Artists artists = dataset.get(position);
-        holder.bindData(artists, position);
+        holder.bindData(artists, listener, position);
     }
 
     @Override
     public int getItemCount() {
         return dataset.size();
     }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -47,12 +54,16 @@ public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsAdapter.ViewHold
             this.binding = binding;
         }
 
-        public void bindData(Artists artists, int position) {
+        public void bindData(Artists artists, OnArtistClickListener listener, int position) {
 
             String artistsPosition = Integer.toString(position + 1);
             binding.artistName.setText(artists.getName());
             binding.artistNumber.setText(String.format("%s.", artistsPosition));
-            binding.artistListenersNumber.setText(artists.getListeners());
+            binding.artistListenersNumber.setText(FormatUtil.FormatNumber(artists.getListeners()));
+
+            binding.getRoot().setOnClickListener(view -> {
+                listener.onArtistClick(artists.getName());
+            });
 
         }
     }

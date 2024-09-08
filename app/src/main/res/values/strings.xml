@@ -6,5 +6,10 @@
     <string name="artist_listeners_number">0000000 </string>
     <string name="title_artist_first">Top Artistas</string>
     <string name="title_artist_second">Colombia</string>
-    <string name="text_info">Seleccione un artista para más información</string>
+    <string name="text_info">Seleccione un artista para más información.</string>
+    <string name="top_track">Top canciones</string>
+    <string name="track_name">Nombre de la canción</string>
+    <string name="track_reproductions">Reproducciones:</string>
+    <string name="error_exist_url">No existe URL</string>
+    <string name="error_internet">Sin acceso a la red, verifique su conexión.</string>
 </resources>
